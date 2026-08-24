@@ -1,0 +1,22 @@
+Use AllWebUIServerClasses.pkg
+Use cWebMarkdownEditor.pkg
+Use cWebMarkdownViewer.pkg
+
+Object oApplication is a cApplication
+End_Object
+
+Object oWebApp is a cWebApp
+    Set psTheme to "Df_Material"
+    Set psApplicationTitle to "Web Markdown Editor"
+    Set peApplicationStyle to wvsDesktop
+    Set peApplicationStateMode to asmHistoryAndUrls
+    Set peLoginMode to lmLoginNone
+
+    Use SessionManager.wo
+    Use WebResourceManager.wo
+    Use Demo.wo
+
+    Set phoDefaultView to oDemo
+End_Object
+
+Send StartWebApp of oWebApp

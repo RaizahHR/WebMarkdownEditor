@@ -1,0 +1,49 @@
+Use cWebBaseDEO.pkg
+
+#IFNDEF MD_MODE_WRITE
+    Define MD_MODE_WRITE   for 0
+    Define MD_MODE_PREVIEW for 1
+#ENDIF
+
+Class cWebMarkdownEditor is a cWebBaseDEO
+    Procedure Construct_Object
+        Forward Send Construct_Object
+
+        Set psJSClass to "df.WebMarkdownEditor"
+
+        { WebProperty=Client }
+        Property String psPlaceholder ""
+
+        { WebProperty=Client }
+        Property Integer piEditorHeight 320
+
+        { WebProperty=Client }
+        Property Integer peMode MD_MODE_WRITE
+
+        { WebProperty=Client }
+        Property Boolean pbShowToolbar True
+    End_Procedure
+
+    { MethodType=Property }
+    Procedure Set Text String sText
+        Boolean bActive bAppSynching
+
+        Get Active_State to bActive
+        Get AppSynching to bAppSynching
+
+        If (bActive and not(bAppSynching)) Begin
+            WebSet psValue to sText
+        End
+        Else Begin
+            Set psValue to sText
+        End
+    End_Procedure
+
+    { MethodType=Property }
+    Function Text Returns String
+        String sText
+
+        WebGet psValue to sText
+        Function_Return sText
+    End_Function
+End_Class

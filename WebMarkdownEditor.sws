@@ -1,0 +1,28 @@
+{
+    "dependencies": [
+        "DataFlex-dev/Web UI Server#<2.0.0",
+        "DataFlex-dev/Web UI Material Theme#<2.0.0"
+    ],
+    "description": "Reusable secure Markdown editor control for DataFlex WebApp",
+    "df": 26.0,
+    "package": {
+        "htmlIncludes": [
+            "MarkdownEditor/vendor/marked-18.0.9.umd.js",
+            "MarkdownEditor/MarkdownEditor.css",
+            "MarkdownEditor/DataFlexHighlighter.js",
+            "MarkdownEditor/MarkdownRenderer.js",
+            "MarkdownEditor/WebMarkdownViewer.js",
+            "MarkdownEditor/WebMarkdownEditor.js"
+        ],
+        "install": [
+            "${AppHtml}\\MarkdownEditor"
+        ],
+        "license": "MIT",
+        "licenseFile": "AppHtml/MarkdownEditor/vendor/marked-LICENSE.txt",
+        "version": "1.0.1"
+    },
+    "projects": [
+        "WebApp.src"
+    ],
+    "workspaceName": "WebMarkdownEditor"
+}

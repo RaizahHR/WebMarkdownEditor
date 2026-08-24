@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown renderer security checks</title>
+    <script src="../AppHtml/MarkdownEditor/vendor/marked-18.0.9.umd.js"></script>
+    <script src="../AppHtml/MarkdownEditor/DataFlexHighlighter.js"></script>
+    <script src="../AppHtml/MarkdownEditor/MarkdownRenderer.js"></script>
+</head>
+<body data-result="running">
+    <pre id="result"></pre>
+    <script>
+        (() => {
+            const failures = [];
+            const check = (condition, message) => {
+                if (!condition) failures.push(message);
+            };
+            const render = (source) => {
+                const template = document.createElement("template");
+                template.innerHTML = WebMarkdown.renderSafe(source);
+                return template.content;
+            };
+
+            let output = render("# Safe heading\n\n[good](https://example.com)");
+            check(Boolean(output.querySelector("h1")), "headings should render");
+            check(output.querySelector("a")?.getAttribute("href") === "https://example.com", "HTTPS links should survive");
+
+            output = render("[bad](javascript:alert(1))");
+            check(!output.querySelector("a[href]"), "javascript links must lose href");
+
+            output = render("[data](data:text/html,boom) [relative](/admin) [protocol-relative](//example.com)");
+            check(!output.querySelector("a[href]"), "data and relative links must lose href");
+
+            output = render("[encoded](jav&#x61;script:alert(1))");
+            check(!output.querySelector("a[href]"), "entity-obfuscated javascript links must lose href");
+
+            output = render("<scr" + "ipt>window.markdownPwned = true</scr" + "ipt>");
+            check(!output.querySelector("script"), "raw script elements must not render");
+
+            output = render("<img src=x onerror=alert(1)>\n\n![remote](https://example.com/x.png)");
+            check(!output.querySelector("img"), "raw and Markdown images must not render");
+
+            output = render("<svg onload=alert(1)><circle></circle></svg>");
+            check(!output.querySelector("svg"), "SVG must not render");
+
+            output = render("<iframe srcdoc=\"<scr" + "ipt>alert(1)</scr" + "ipt>\"></iframe><style>body{display:none}</style>");
+            check(!output.querySelector("iframe, style, script"), "active raw HTML must not render");
+
+            output = render("<a href=\"https://example.com\" onclick=\"alert(1)\" style=\"color:red\">safe text</a>");
+            check(!output.querySelector("[onclick]"), "event attributes must not render");
+            check(!output.querySelector("[style]"), "style attributes must not render");
+
+            output = render("```dataflex\nProcedure Test\n    // <script>alert(1)</script>\nEnd_Procedure\n```");
+            check(Boolean(output.querySelector("code.language-dataflex .df-keyword")), "DataFlex keywords should highlight");
+            check(Boolean(output.querySelector("code.language-dataflex .df-comment")), "DataFlex comments should highlight");
+            check(!output.querySelector("script"), "highlighted code must remain escaped");
+
+            document.body.dataset.result = failures.length ? "fail" : "pass";
+            document.querySelector("#result").textContent = failures.length ? failures.join("\n") : "PASS";
+        })();
+    </script>
+</body>
+</html>

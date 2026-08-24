@@ -1,0 +1,11 @@
+*.dep
+*.err
+*.prn
+Config.ws
+CssThemes/
+DfPkg/
+Programs/
+WebUI/
+*.lock
+IdeSrc/Workspace.loc
+AppSrc/LoginEncryptionKey.inc

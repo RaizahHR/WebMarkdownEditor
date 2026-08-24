@@ -1,0 +1,64 @@
+Object oDemo is a cWebView
+    Set psCaption to "Markdown editor"
+    Set piWidth to 900
+    Set piColumnCount to 12
+
+    Function DemoMarkdown Returns String
+        String sMarkdown
+
+        Move ("# Package description" + Character(10) + Character(10) + ;
+              "Use **Markdown** for package documentation and release notes." + Character(10) + Character(10) + ;
+              "- Source remains Markdown" + Character(10) + ;
+              "- Preview HTML is sanitized" + Character(10) + ;
+              "- [HTTPS links](https://example.com) are allowed" + Character(10) + Character(10) + ;
+              "Raw HTML such as <script>alert('blocked')</script> is displayed as text.") to sMarkdown
+
+        Function_Return sMarkdown
+    End_Function
+
+    Object oIntro is a cWebLabel
+        Set piColumnSpan to 12
+        Set psCaption to "Edit Markdown below. Preview is rendered locally and sanitized before entering the DOM."
+        Set psCSSClass to "DemoIntro"
+    End_Object
+
+    Object oMarkdownEditor is a cWebMarkdownEditor
+        Set piColumnSpan to 12
+        Set piEditorHeight to 360
+        Set piMaxLength to 100000
+        Set psLabel to "Markdown source"
+        Set psPlaceholder to "Enter a package description or changelog..."
+    End_Object
+
+    Object oRenderButton is a cWebButton
+        Set piColumnSpan to 3
+        Set psCaption to "Copy to viewer"
+
+        Procedure OnClick
+            String sMarkdown
+
+            WebGet psValue of oMarkdownEditor to sMarkdown
+            WebSet psValue of oMarkdownViewer to sMarkdown
+        End_Procedure
+    End_Object
+
+    Object oViewerLabel is a cWebLabel
+        Set piColumnSpan to 12
+        Set psCaption to "Standalone viewer"
+        Set psCSSClass to "DemoViewerLabel"
+    End_Object
+
+    Object oMarkdownViewer is a cWebMarkdownViewer
+        Set piColumnSpan to 12
+        Set piViewerHeight to 280
+    End_Object
+
+    Procedure OnShow
+        String sMarkdown
+
+        Forward Send OnShow
+        Get DemoMarkdown to sMarkdown
+        WebSet psValue of oMarkdownEditor to sMarkdown
+        WebSet psValue of oMarkdownViewer to sMarkdown
+    End_Procedure
+End_Object

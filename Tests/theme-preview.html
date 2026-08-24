@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown theme preview</title>
+    <link rel="stylesheet" href="../AppHtml/CssThemes/Df_Material/theme.css">
+    <link rel="stylesheet" href="../AppHtml/MarkdownEditor/MarkdownEditor.css">
+    <script src="../AppHtml/MarkdownEditor/vendor/marked-18.0.9.umd.js"></script>
+    <script src="../AppHtml/MarkdownEditor/DataFlexHighlighter.js"></script>
+    <script src="../AppHtml/MarkdownEditor/MarkdownRenderer.js"></script>
+    <style>
+        body { margin: 24px; }
+        main { display: grid; gap: 24px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="WebMarkdownEditor_Wrapper">
+            <div class="WebMarkdownEditor_Header">
+                <div class="WebMarkdownEditor_Tabs"><button aria-selected="true">Preview</button></div>
+                <div class="WebMarkdownEditor_Toolbar"><button>H2</button></div>
+            </div>
+            <div class="WebMarkdownEditor_Preview WebMarkdown_Content" id="editor-preview"></div>
+        </section>
+        <section class="WebMarkdownViewer_Content WebMarkdown_Content" id="viewer-preview"></section>
+    </main>
+    <script>
+        if (new URLSearchParams(location.search).has("dark")) {
+            document.body.classList.add("df-Dark");
+        }
+
+        const markdown = [
+            "## DataFlex sample",
+            "",
+            "```dataflex",
+            "Use cLogger.pkg",
+            "",
+            "Object oLogger is a cLogger",
+            "    Set psApplicationName to \"Package Manager Server\"",
+            "    Set piLogLevel to DFLOG_INFO",
+            "End_Object",
+            "```",
+            "",
+            "[DataFlex](https://www.dataaccess.com/)"
+        ].join("\n");
+        document.querySelector("#editor-preview").innerHTML = WebMarkdown.renderSafe(markdown);
+        document.querySelector("#viewer-preview").innerHTML = WebMarkdown.renderSafe(markdown);
+    </script>
+</body>
+</html>

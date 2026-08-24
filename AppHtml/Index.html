@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Markdown Editor</title>
+
+    <!-- Managed Includes (do not remove this line, used for automatic insertion) -->
+    <link rel="stylesheet" href="WebUI/system.css?v=1.0.52">
+    <script src="WebUI/df-min.js?v=1.0.52"></script>
+    <link rel="stylesheet" href="CssThemes/Df_Material/theme.css?v=1.0.4">
+    <!-- End of Managed Includes (do not remove this line, used for automatic insertion) -->
+
+    <!-- DataFlex Custom Controls (do not remove this line, used for automatic insertion) -->
+    <link rel="stylesheet" href="MarkdownEditor/MarkdownEditor.css?v=0.1.1">
+    <script src="MarkdownEditor/vendor/marked-18.0.9.umd.js?v=18.0.9"></script>
+    <script src="MarkdownEditor/DataFlexHighlighter.js?v=0.1.0"></script>
+    <script src="MarkdownEditor/MarkdownRenderer.js?v=0.1.0"></script>
+    <script src="MarkdownEditor/WebMarkdownEditor.js?v=0.1.0"></script>
+    <script src="MarkdownEditor/WebMarkdownViewer.js?v=0.1.0"></script>
+
+    <style>
+        html, body, #viewport {
+            height: 100%;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="viewport"></div>
+    <script>
+        const oWebApp = new df.WebApp("WebServiceDispatcher.wso");
+        oWebApp.displayApp("#viewport");
+    </script>
+</body>
+</html>

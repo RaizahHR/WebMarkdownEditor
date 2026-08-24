@@ -1,0 +1,15 @@
+Use cWebBaseControl.pkg
+
+Class cWebMarkdownViewer is a cWebBaseControl
+    Procedure Construct_Object
+        Forward Send Construct_Object
+
+        Set psJSClass to "df.WebMarkdownViewer"
+
+        { WebProperty=Client }
+        Property String psValue ""
+
+        { WebProperty=Client }
+        Property Integer piViewerHeight 240
+    End_Procedure
+End_Class

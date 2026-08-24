@@ -1,0 +1,383 @@
+.WebMarkdownEditor_Wrapper,
+.WebMarkdownViewer_Content {
+    --markdown-background: var(--df-CtrBackgroundColor, #fff);
+    --markdown-form-background: var(--df-FrmBackgroundColor, var(--markdown-background));
+    --markdown-subtle-background: var(--df-Grayscale6, #f6f8fa);
+    --markdown-text: var(--df-CtrTextColor, #24292f);
+    --markdown-title: var(--df-TitleColor, var(--markdown-text));
+    --markdown-muted: var(--df-CtrLabelColor, #59636e);
+    --markdown-border: var(--df-CtrBorderColor, #d0d7de);
+    --markdown-link: var(--df-TxtLinkColor, #0969da);
+    --markdown-accent: var(--df-TxtLinkColor, var(--df-MainRegular, #0969da));
+    --markdown-df-text: #000;
+    --markdown-df-keyword: #0000ff;
+    --markdown-df-operator: #a90000;
+    --markdown-df-comment: #008000;
+    --markdown-df-string: #800080;
+    --markdown-df-meta-brace: #0669a4;
+    --markdown-df-meta-tag: #8d7850;
+    --markdown-df-meta-assignment: #965656;
+    --markdown-df-meta-value: #0669a4;
+    box-sizing: border-box;
+    color: var(--markdown-text);
+    width: 100%;
+}
+
+body.df-Dark .WebMarkdownEditor_Wrapper,
+body.df-Dark .WebMarkdownViewer_Content {
+    --markdown-df-text: #fffff0;
+    --markdown-df-keyword: #37d4ff;
+    --markdown-df-operator: #ffff80;
+    --markdown-df-comment: #3cdc46;
+    --markdown-df-string: #ffbe9a;
+    --markdown-df-meta-brace: #ff78b4;
+    --markdown-df-meta-tag: #ff78b4;
+    --markdown-df-meta-assignment: #ff78b4;
+    --markdown-df-meta-value: #c0c0c0;
+}
+
+.WebMarkdownEditor_Wrapper {
+    border: 1px solid var(--markdown-border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.WebMarkdownEditor_Header {
+    align-items: center;
+    background: var(--markdown-subtle-background);
+    border-bottom: 1px solid var(--markdown-border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+    min-height: 42px;
+    padding: 4px 8px;
+}
+
+.WebMarkdownEditor_Tabs,
+.WebMarkdownEditor_Toolbar {
+    display: flex;
+    gap: 3px;
+}
+
+.WebMarkdownEditor_Tabs button,
+.WebMarkdownEditor_Toolbar button {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: inherit;
+    cursor: pointer;
+    min-height: 30px;
+    min-width: 34px;
+    padding: 4px 8px;
+}
+
+.WebMarkdownEditor_Tabs button[aria-selected="true"],
+.WebMarkdownEditor_Tabs button:hover,
+.WebMarkdownEditor_Toolbar button:hover {
+    background: var(--markdown-background);
+    border-color: var(--markdown-border);
+}
+
+.WebMarkdownEditor_Tabs button:focus-visible,
+.WebMarkdownEditor_Toolbar button:focus-visible,
+.WebMarkdownEditor_Source:focus-visible {
+    outline: 2px solid var(--markdown-accent);
+    outline-offset: 1px;
+}
+
+.WebMarkdownEditor_Toolbar button:disabled {
+    cursor: default;
+    opacity: 0.45;
+}
+
+.WebMarkdownEditor_Body {
+    height: var(--markdown-editor-height, 320px);
+}
+
+.WebMarkdownEditor_Source,
+.WebMarkdownEditor_Preview {
+    background: var(--markdown-background);
+    border: 0;
+    box-sizing: border-box;
+    color: var(--markdown-text);
+    height: 100%;
+    margin: 0;
+    overflow: auto;
+    padding: 16px;
+    width: 100%;
+}
+
+.WebMarkdownEditor_Source {
+    font: 14px/1.55 Consolas, "Courier New", monospace;
+    resize: none;
+}
+
+.WebMarkdownEditor_Source::placeholder {
+    color: var(--markdown-muted);
+}
+
+.WebMarkdownViewer_Content {
+    background: var(--markdown-background);
+    border: 1px solid var(--markdown-border);
+    border-radius: 4px;
+    overflow: auto;
+    padding: 16px;
+}
+
+.WebMarkdown_Content {
+    line-height: 1.6;
+}
+
+.WebMarkdown_Content > :first-child {
+    margin-top: 0;
+}
+
+.WebMarkdown_Content > :last-child {
+    margin-bottom: 0;
+}
+
+.WebMarkdown_Content pre,
+.WebMarkdown_Content code {
+    background: var(--markdown-subtle-background);
+    border-radius: 3px;
+    font-family: Consolas, "Courier New", monospace;
+}
+
+.WebMarkdown_Content code {
+    padding: 1px 4px;
+}
+
+.WebMarkdown_Content pre {
+    overflow: auto;
+    padding: 12px;
+}
+
+.WebMarkdown_Content pre code {
+    padding: 0;
+}
+
+.WebMarkdown_Content blockquote {
+    border-left: 4px solid var(--markdown-border);
+    color: var(--markdown-muted);
+    margin-left: 0;
+    padding-left: 14px;
+}
+
+.WebMarkdown_Content table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.WebMarkdown_Content th,
+.WebMarkdown_Content td {
+    border: 1px solid var(--markdown-border);
+    padding: 6px 8px;
+    text-align: left;
+}
+
+.DemoIntro,
+.DemoViewerLabel {
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+/* Markdown controls need explicit typography because DataFlex themes reset
+   native heading, list and paragraph styles. */
+.WebMarkdownEditor_Header {
+    background: var(--markdown-subtle-background);
+    gap: 10px;
+    padding: 6px 8px;
+}
+
+.WebMarkdownEditor_Tabs {
+    background: var(--markdown-form-background);
+    border-radius: 6px;
+    gap: 2px;
+    padding: 2px;
+}
+
+.WebMarkdownEditor_Toolbar {
+    gap: 4px;
+    margin-left: auto;
+}
+
+.WebMarkdownEditor_Tabs button,
+.WebMarkdownEditor_Toolbar button {
+    appearance: none;
+    align-items: center;
+    background: var(--markdown-background);
+    border: 1px solid var(--markdown-border);
+    border-radius: 6px;
+    box-shadow: 0 1px 1px rgb(27 31 36 / 0.05);
+    color: var(--markdown-text);
+    display: inline-flex;
+    font: 600 13px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    justify-content: center;
+    min-height: 30px;
+    min-width: 34px;
+    padding: 0 9px;
+    transition: background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.WebMarkdownEditor_Toolbar button[data-action="emphasis"] {
+    font-style: italic;
+}
+
+.WebMarkdownEditor_Toolbar button:hover,
+.WebMarkdownEditor_Tabs button:hover {
+    background: var(--markdown-form-background);
+    border-color: var(--markdown-accent);
+}
+
+.WebMarkdownEditor_Toolbar button:active,
+.WebMarkdownEditor_Tabs button:active {
+    background: var(--markdown-subtle-background);
+    box-shadow: inset 0 1px 2px rgb(27 31 36 / 0.1);
+}
+
+.WebMarkdownEditor_Tabs button[aria-selected="true"] {
+    background: var(--markdown-background);
+    border-color: var(--markdown-accent);
+    box-shadow: 0 0 0 1px rgb(9 105 218 / 0.15);
+    color: var(--markdown-accent);
+}
+
+.WebMarkdownEditor_Source,
+.WebMarkdownEditor_Preview {
+    padding: 24px;
+}
+
+.WebMarkdown_Content {
+    color: var(--markdown-text);
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    overflow-wrap: anywhere;
+}
+
+.WebMarkdown_Content h1,
+.WebMarkdown_Content h2,
+.WebMarkdown_Content h3,
+.WebMarkdown_Content h4,
+.WebMarkdown_Content h5,
+.WebMarkdown_Content h6 {
+    color: var(--markdown-title);
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    margin-top: 24px;
+}
+
+.WebMarkdown_Content h1 {
+    border-bottom: 1px solid var(--markdown-border);
+    font-size: 2em;
+    padding-bottom: 0.3em;
+}
+
+.WebMarkdown_Content h2 {
+    border-bottom: 1px solid var(--markdown-border);
+    font-size: 1.5em;
+    padding-bottom: 0.3em;
+}
+
+.WebMarkdown_Content h3 { font-size: 1.25em; }
+.WebMarkdown_Content h4 { font-size: 1em; }
+.WebMarkdown_Content h5 { font-size: 0.875em; }
+.WebMarkdown_Content h6 { color: var(--markdown-muted); font-size: 0.85em; }
+
+.WebMarkdown_Content p,
+.WebMarkdown_Content ul,
+.WebMarkdown_Content ol,
+.WebMarkdown_Content blockquote,
+.WebMarkdown_Content pre,
+.WebMarkdown_Content table {
+    margin-bottom: 16px;
+    margin-top: 0;
+}
+
+.WebMarkdown_Content ul,
+.WebMarkdown_Content ol {
+    padding-left: 2em;
+}
+
+.WebMarkdown_Content ul { list-style-type: disc; }
+.WebMarkdown_Content ol { list-style-type: decimal; }
+.WebMarkdown_Content ul ul { list-style-type: circle; }
+.WebMarkdown_Content ul ul ul { list-style-type: square; }
+.WebMarkdown_Content li { display: list-item; }
+.WebMarkdown_Content li + li { margin-top: 0.25em; }
+
+.WebMarkdown_Content a {
+    color: var(--markdown-link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.WebMarkdown_Content blockquote {
+    border-left: 4px solid var(--markdown-border);
+    color: var(--markdown-muted);
+    padding-left: 16px;
+}
+
+.WebMarkdown_Content hr {
+    background: var(--markdown-border);
+    border: 0;
+    height: 1px;
+    margin: 24px 0;
+}
+
+.WebMarkdown_Content pre {
+    background: var(--markdown-subtle-background);
+    border-radius: 6px;
+    line-height: 1.4;
+    overflow: auto;
+    padding: 16px;
+}
+
+.WebMarkdown_Content code {
+    background: var(--markdown-subtle-background);
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    font-size: 0.875em;
+    padding: 0.2em 0.4em;
+}
+
+.WebMarkdown_Content pre code {
+    background: transparent;
+    border-radius: 0;
+    font-size: 0.875em;
+    line-height: 1.4;
+    padding: 0;
+}
+
+/* DataFlex Studio palette, mapped from the official Pygments lexer tokens. */
+.WebMarkdown_Content pre.highlight code {
+    color: var(--markdown-df-text);
+}
+
+.WebMarkdown_Content .df-keyword { color: var(--markdown-df-keyword); }
+.WebMarkdown_Content .df-operator { color: var(--markdown-df-operator); }
+.WebMarkdown_Content .df-comment { color: var(--markdown-df-comment); }
+.WebMarkdown_Content .df-string { color: var(--markdown-df-string); }
+.WebMarkdown_Content .df-number { color: var(--markdown-df-text); }
+.WebMarkdown_Content .df-meta-brace { color: var(--markdown-df-meta-brace); }
+.WebMarkdown_Content .df-meta-tag { color: var(--markdown-df-meta-tag); }
+.WebMarkdown_Content .df-meta-assignment { color: var(--markdown-df-meta-assignment); }
+.WebMarkdown_Content .df-meta-value { color: var(--markdown-df-meta-value); }
+
+.WebMarkdown_Content table {
+    border-collapse: collapse;
+    display: block;
+    max-width: 100%;
+    overflow: auto;
+}
+
+.WebMarkdown_Content th,
+.WebMarkdown_Content td {
+    border: 1px solid var(--markdown-border);
+    padding: 6px 13px;
+}
+
+.WebMarkdown_Content th {
+    background: var(--markdown-subtle-background);
+    font-weight: 600;
+}

@@ -1,0 +1,5 @@
+Use cWebSessionManager.pkg
+
+// The demo has no login or database; the base manager provides in-memory session keys.
+Object oSessionManager is a cWebSessionManager
+End_Object

@@ -1,0 +1,14 @@
+[Header]
+Mask=*.src;*.vw;*.sl;*.dg;*.rv;*.bp;*.pkg;*.wo;*.dd;*.inc;*.tpl;*.dfo;*.asp;*.asa;*.html;*.css;*.js
+Active=0
+SubDirectories=1
+WholeWordOnly=0
+RegularExpression=0
+SearchWhere=0
+Location=C:\Data\Workspaces\WebMarkdownEditor\IdeSrc\Henri_FindInFiles.dsk
+[C:\Data\Workspaces\WebMarkdownEditor\AppSrc]
+IsEnabled=1
+[C:\Data\Workspaces\WebMarkdownEditor]
+IsEnabled=1
+[C:\Data\Workspaces\WebMarkdownEditor\AppHtml]
+IsEnabled=1
