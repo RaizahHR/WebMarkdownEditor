@@ -21,8 +21,5 @@
         "licenseFile": "AppHtml/MarkdownEditor/vendor/marked-LICENSE.txt",
         "version": "1.0.1"
     },
-    "projects": [
-        "WebApp.src"
-    ],
     "workspaceName": "WebMarkdownEditor"
 }

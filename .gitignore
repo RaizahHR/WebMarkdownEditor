@@ -7,5 +7,6 @@ DfPkg/
 Programs/
 WebUI/
 *.lock
-IdeSrc/Workspace.loc
-AppSrc/LoginEncryptionKey.inc
+*.zip
+**/Workspace.loc
+**/LoginEncryptionKey.inc
